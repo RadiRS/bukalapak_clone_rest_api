@@ -1,28 +1,13 @@
-# Adonis API application
+# Task 02 Arkademy
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
+### Adonis API application for E-Commerce
 
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
+Tugas minggu ke-dua bootcamp **Arkademy**. Membuat rest api E-Commerce dengan ketentuan **Product List, Product Detail, Cart, Payment Page**
 
-## Setup
+### Tech :
 
-Use the adonis command to install the blueprint
-
-```bash
-adonis new yardstick --api-only
-```
-
-or manually clone the repo and then run `npm install`.
-
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
+- React Native
+- AdonisJS
+- MySql
+- React Navigation
+- Native Base
