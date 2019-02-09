@@ -3,14 +3,19 @@
 const Product = use('App/Models/Product')
 
 class ProductController {
+  // Function for get all data from products
   async index() {
-    return await Product.all()
+    const products = await Product.all()
+    return products
   }
 
-  store({ request }) {
-    Product.create(request)
-
-    return 'Success'
+  // Function for post data product
+  async store({ request }) {
+    const product = await Product.create(request.all())
+    return {
+      status: 'Success',
+      product
+    }
   }
 }
 
