@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +14,12 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route');
-const Product = use('App/Models/Product');
+const Route = use('Route')
+const Product = use('App/Models/Product')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' };
-});
+  return { greeting: 'Hello world in JSON' }
+})
 
-Route.get('/products', 'ProductController.index');
-Route.post('/products', 'ProductController.store');
+Route.get('/products', 'ProductController.index')
+Route.post('/products', 'ProductController.store')

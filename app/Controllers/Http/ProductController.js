@@ -1,17 +1,17 @@
-'use strict';
+'use strict'
 
-const Product = use('App/Models/Product');
+const Product = use('App/Models/Product')
 
 class ProductController {
   async index() {
-    return await Product.all();
+    return await Product.all()
   }
 
   store({ request }) {
-    Product.create(request);
+    Product.create(request)
 
-    return 'Success';
+    return 'Success'
   }
 }
 
-module.exports = ProductController;
+module.exports = ProductController
