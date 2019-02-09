@@ -23,5 +23,8 @@ Route.get('/', () => {
 // Grouped
 Route.group(() => {
   Route.get('products', 'ProductController.index')
+  Route.get('products/:id', 'ProductController.show')
+  Route.delete('products/:id', 'ProductController.delete')
+  Route.patch('products/:id', 'ProductController.update')
   Route.post('product', 'ProductController.store')
 }).prefix('api/v1')
