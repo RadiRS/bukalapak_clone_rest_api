@@ -29,7 +29,8 @@ Factory.blueprint('App/Models/Product', async faker => {
   return {
     name: faker.sentence({ words: 5 }),
     image: faker.avatar(),
-    price: faker.floating({ min: 1 }),
+    shop: faker.word({ words: 2 }),
+    price: faker.integer({ min: 1, max: 10000000 }),
     description: faker.paragraph()
   }
 })

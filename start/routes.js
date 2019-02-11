@@ -20,11 +20,20 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-// Grouped
+// ROuter Grouped Product
 Route.group(() => {
   Route.get('products', 'ProductController.index')
   Route.get('products/:id', 'ProductController.show')
   Route.delete('products/:id', 'ProductController.delete')
   Route.patch('products/:id', 'ProductController.update')
-  Route.post('product', 'ProductController.store')
+  Route.post('products', 'ProductController.store')
+}).prefix('api/v1')
+
+// ROuter Grouped Order
+Route.group(() => {
+  Route.get('orders', 'OrderController.index')
+  Route.get('orders/:id', 'OrderController.show')
+  Route.delete('orders/:id', 'OrderController.delete')
+  Route.patch('orders/:id', 'OrderController.update')
+  Route.post('orders', 'OrderController.store')
 }).prefix('api/v1')

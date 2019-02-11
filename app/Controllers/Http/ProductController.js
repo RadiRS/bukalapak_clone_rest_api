@@ -7,7 +7,7 @@ class ProductController {
   // Function for get all data from products
   async index() {
     const products = await Product.all()
-    return { data: products }
+    return products
   }
 
   // Function for post data product & validation

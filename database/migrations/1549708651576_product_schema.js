@@ -9,6 +9,7 @@ class ProductSchema extends Schema {
       table.increments()
       table.string('name', 125).notNullable()
       table.string('image', 125).notNullable()
+      table.string('shop', 125).notNullable()
       table.float('price').notNullable()
       table.text('description', 254)
       table.timestamps()
