@@ -15,6 +15,11 @@ class OrderController {
 
   // Function for post data Order & validation
   async store({ request }) {
+    // const { product_id } = request.post()
+    // const order = await Order.find(product_id)
+
+    // if (order) return { status: 'Product sudah ada' }
+
     const rules = {
       product_id: 'required',
       qty: 'required',

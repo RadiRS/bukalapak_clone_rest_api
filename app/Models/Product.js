@@ -6,7 +6,11 @@ const Order = use('App/Models/Order')
 
 class Product extends Model {
   orders() {
-    return this.hasMany(Order)
+    // return this.hasOne(Order)
+  }
+
+  getAllData() {
+    return Product.all()
   }
 }
 

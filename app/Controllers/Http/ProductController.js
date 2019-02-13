@@ -8,13 +8,17 @@ class ProductController {
   async index() {
     const products = await Product.all()
     return products
+    // const products = new Product()
+    // return products.getAllData()
   }
 
   // Function for post data product & validation
   async store({ request }) {
     const rules = {
       name: 'required',
-      qty: 'required'
+      image: 'required',
+      shop: 'required',
+      price: 'required'
     }
 
     const validation = await validate(request.all(), rules)
