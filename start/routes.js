@@ -23,7 +23,7 @@ Route.get('/', () => {
 // ROuter Grouped Product
 Route.group(() => {
   Route.get('products', 'ProductController.index')
-  Route.get('products/:id', 'ProductController.show')
+  Route.get('product/:id', 'ProductController.show')
   Route.delete('products/:id', 'ProductController.delete')
   Route.patch('products/:id', 'ProductController.update')
   Route.post('products', 'ProductController.store')
@@ -32,8 +32,8 @@ Route.group(() => {
 // ROuter Grouped Order
 Route.group(() => {
   Route.get('orders', 'OrderController.index')
-  Route.get('orders/:id', 'OrderController.show')
-  Route.delete('orders/:id', 'OrderController.delete')
-  Route.patch('orders/:id', 'OrderController.update')
+  Route.get('order/:id', 'OrderController.show')
+  Route.delete('order/:id', 'OrderController.delete')
+  Route.patch('order/:id', 'OrderController.update')
   Route.post('order', 'OrderController.store')
 }).prefix('api/v1')
