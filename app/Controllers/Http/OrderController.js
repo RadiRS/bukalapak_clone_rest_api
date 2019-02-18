@@ -25,7 +25,7 @@ class OrderController {
     // return { data }
 
     if (data !== 0) {
-      return { status: 'Product sudah ada' }
+      return { status: 'Item sudah ada' }
     }
 
     const rules = {
@@ -46,7 +46,7 @@ class OrderController {
     const order = await Order.create(request.all())
 
     return {
-      status: 'Success',
+      status: 'Item telah ditambahkan dikeranjang belanja',
       data: order
     }
   }

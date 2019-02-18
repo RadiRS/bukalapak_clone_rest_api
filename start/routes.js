@@ -1,18 +1,5 @@
 'use strict'
 
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| Http routes are entry points to your web application. You can create
-| routes for different URLs and bind Controller actions to them.
-|
-| A complete guide on routing is available here.
-| http://adonisjs.com/docs/4.0/routing
-|
-*/
-
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
@@ -20,7 +7,7 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-// ROuter Grouped Product
+// Router Grouped Product
 Route.group(() => {
   Route.get('products', 'ProductController.index')
   Route.get('product/:id', 'ProductController.show')
@@ -29,11 +16,26 @@ Route.group(() => {
   Route.post('products', 'ProductController.store')
 }).prefix('api/v1')
 
-// ROuter Grouped Order
+// Router Grouped Order
 Route.group(() => {
   Route.get('orders', 'OrderController.index')
   Route.get('order/:id', 'OrderController.show')
   Route.delete('order/:id', 'OrderController.delete')
   Route.patch('order/:id', 'OrderController.update')
   Route.post('order', 'OrderController.store')
+}).prefix('api/v1')
+
+// Router Grouped User
+Route.group(() => {
+  Route.get('Users', 'UserController.index')
+  Route.get('user/:id', 'UserController.show')
+  Route.delete('user/:id', 'UserController.delete')
+  Route.patch('user/:id', 'UserController.update')
+  Route.post('user', 'UserController.store')
+}).prefix('api/v1')
+
+// Router Grouped Auth
+Route.group(() => {
+  Route.post('auth/login', 'UserController.login')
+  Route.post('auth/register', 'UserController.register')
 }).prefix('api/v1')
