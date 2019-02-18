@@ -6,26 +6,26 @@ const { validate } = use('Validator')
 class OrderController {
   // Function for get all data from orders join products
   async index() {
-    const orders = await Order.query()
-      .with('products')
-      .fetch()
+    const order = new Order()
 
-    return orders
+    try {
+      return await order.getOrders()
+    } catch (error) {
+      return { massage: error.message }
+    }
   }
 
   // Function for post data Order & validation
   async store({ request }) {
+    const order = new Order()
     const { product_id } = request.post()
 
-    // const data = await Order.find(product_id)
-    const data = await Order.query()
-      .where('product_id', product_id)
-      .getCount()
+    const product = await order.getOrderProduct(product_id)
 
-    // return { data }
-
-    if (data !== 0) {
-      return { status: 'Item sudah ada' }
+    if (product) {
+      product.qty += 1
+      await product.save()
+      return { status: 'Kuantiti item ditambahkan', data: product }
     }
 
     const rules = {
@@ -39,74 +39,44 @@ class OrderController {
     if (validation.fails()) {
       return {
         status: 'Error',
-        order: validation.messages()
+        data: validation.messages()
       }
     }
 
-    const order = await Order.create(request.all())
-
-    return {
-      status: 'Item telah ditambahkan dikeranjang belanja',
-      data: order
-    }
-  }
-
-  // Function for get individual item from orders
-  async show({ params: { id } }) {
-    const order = await Order.find(id)
-
-    if (order) {
+    try {
+      const data = await order.storeOrderProduct(request.all())
       return {
-        status: 'Success',
-        data: order
+        status: 'Item telah ditambahkan dikeranjang belanja',
+        data
       }
-    } else {
+    } catch (error) {
       return {
-        status: 'Error',
-        id
+        status: error.message
       }
     }
   }
 
   // Function for update item in orders
   async update({ request, params: { id } }) {
-    const order = await Order.find(id)
+    const order = new Order()
 
-    if (order) {
-      const { qty, price } = request.post()
-      order.qty = qty
-      order.price = price
-
-      await order.save()
-
-      return {
-        status: 'Success',
-        data: order
-      }
-    } else {
-      return {
-        status: 'Error',
-        id
-      }
+    try {
+      const data = order.updateOrderProduct(request.all(), id)
+      return data
+    } catch (error) {
+      return { status: error.message }
     }
   }
 
   // Function for deleted item in orders
   async delete({ params: { id } }) {
-    const order = await Order.find(id)
+    const order = new Order()
 
-    if (order) {
-      await order.delete()
-
-      return {
-        status: 'Success',
-        id
-      }
-    } else {
-      return {
-        status: 'Error',
-        id
-      }
+    try {
+      const data = await order.deleteOrder(id)
+      return data
+    } catch (error) {
+      return { status: error.message }
     }
   }
 }

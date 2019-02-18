@@ -7,7 +7,6 @@ class UserController {
   async profile({ auth }) {
     try {
       const user = await auth.getUser()
-      console.log(user)
       return {
         status: 'success',
         data: user
