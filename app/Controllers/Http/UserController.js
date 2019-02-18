@@ -3,8 +3,21 @@
 const User = use('App/Models/User')
 
 class UserController {
-  index() {}
+  // Function for get user profile (Authenticated)
+  async profile({ auth }) {
+    try {
+      const user = await auth.getUser()
+      console.log(user)
+      return {
+        status: 'success',
+        data: user
+      }
+    } catch (error) {
+      return error
+    }
+  }
 
+  // Function for login with authentication using jwt
   async login({ request, auth }) {
     const { email, password } = request.all()
 
@@ -16,6 +29,7 @@ class UserController {
     }
   }
 
+  // Function for register new user
   async register({ request }) {
     const { email, password } = request.all()
 

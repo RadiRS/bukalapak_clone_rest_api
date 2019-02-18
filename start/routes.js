@@ -25,17 +25,10 @@ Route.group(() => {
   Route.post('order', 'OrderController.store')
 }).prefix('api/v1')
 
-// Router Grouped User
+// Router Grouped User & Auth
 Route.group(() => {
-  Route.get('Users', 'UserController.index')
-  Route.get('user/:id', 'UserController.show')
-  Route.delete('user/:id', 'UserController.delete')
-  Route.patch('user/:id', 'UserController.update')
-  Route.post('user', 'UserController.store')
-}).prefix('api/v1')
+  Route.get('user/profile', 'UserController.profile').middleware('auth')
 
-// Router Grouped Auth
-Route.group(() => {
   Route.post('auth/login', 'UserController.login')
   Route.post('auth/register', 'UserController.register')
 }).prefix('api/v1')
