@@ -15,6 +15,21 @@ class OrderController {
     }
   }
 
+  // Function for get individual item from products
+  async show({ params: { id } }) {
+    const order = new Order()
+    const data = await order.getOrder(id)
+
+    if (data) {
+      return data
+    } else {
+      return {
+        status: 'Error',
+        id
+      }
+    }
+  }
+
   // Function for post data Order & validation
   async store({ request }) {
     const order = new Order()

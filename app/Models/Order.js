@@ -46,8 +46,8 @@ class Order extends Model {
       await order.delete()
 
       return {
-        status: 'Item telah dihapus',
-        id
+        status: 'Item telah dihapus dari keranjang',
+        order
       }
     } else {
       return {

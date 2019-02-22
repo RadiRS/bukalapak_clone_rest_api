@@ -43,10 +43,7 @@ class ProductController {
     const product = await Product.find(id)
 
     if (product) {
-      return {
-        status: 'Success',
-        data: product
-      }
+      return product
     } else {
       return {
         status: 'Error',
