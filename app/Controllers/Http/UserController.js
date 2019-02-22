@@ -7,13 +7,9 @@ class UserController {
   // Function for get user profile (Authenticated)
   async profile({ auth }) {
     try {
-      const user = await auth.getUser()
-      return {
-        status: 'success',
-        data: user
-      }
+      return await auth.getUser()
     } catch (error) {
-      return error
+      response.send('Credentials missing')
     }
   }
 
@@ -23,20 +19,22 @@ class UserController {
 
     try {
       const data_token = await auth.attempt(email, password)
+
       return {
-        user: { email, password },
-        data_token
+        email,
+        token: data_token.token
       }
     } catch (error) {
       return {
-        error: error.message
+        error: `${error.uidField || error.passwordField} salah`
+        // error: error
       }
     }
   }
 
   // Function for register new user
-  async register({ request }) {
-    const { email, password } = request.all()
+  async register({ request, auth }) {
+    const { email, password, username } = request.post()
     const rules = {
       username: 'required',
       email: 'required|email|unique:users',
@@ -56,9 +54,9 @@ class UserController {
     }
 
     const validation = await validate(request.all(), rules, messages)
-    const error = validation._errorMessages[0].message
 
     if (validation.fails()) {
+      const error = validation._errorMessages[0].message
       return {
         status: 'Gagal Registrasi',
         error
@@ -67,11 +65,14 @@ class UserController {
 
     try {
       await User.create({
+        username,
         email,
-        password,
-        username
+        password
       })
-      return this.login(...arguments)
+      const data_token = await auth.attempt(email, username)
+      return {
+        token: data_token.token
+      }
     } catch (error) {
       return error
     }
