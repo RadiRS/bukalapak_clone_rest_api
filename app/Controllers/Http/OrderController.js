@@ -6,10 +6,11 @@ const { validate } = use('Validator')
 class OrderController {
   // Function for get all data from orders join products
   async index() {
-    const order = new Order()
+    // const order = new Order()
+    // const order = new Order()
 
     try {
-      return await order.getOrders()
+      return await Order.getOrders()
     } catch (error) {
       return { massage: error.message }
     }
@@ -93,6 +94,18 @@ class OrderController {
     } catch (error) {
       return { status: error.message }
     }
+  }
+
+  // Funtion for deleted all order
+  async deleteAll() {
+    // const order = new Order()
+
+    return await Order.truncate()
+    // try {
+    //   // return await order.deleteAllOrder()
+    // } catch (error) {
+    //   return error
+    // }
   }
 }
 

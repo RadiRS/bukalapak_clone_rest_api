@@ -1,8 +1,8 @@
-# Task 02 Arkademy
+# Project Arkademy
 
 ### Adonis API application for E-Commerce
 
-Tugas minggu ke-dua bootcamp **Arkademy**. Membuat rest api E-Commerce dengan ketentuan **Product List, Product Detail, Cart, Payment Page**
+Project minggu ke-dua bootcamp **Arkademy**. Membuat rest api E-Commerce dengan ketentuan **Product List, Product Detail, Cart, Payment Page**
 
 ### Tech :
 

@@ -6,7 +6,7 @@ const Product = use('App/Models/Product')
 
 class Order extends Model {
   // Get all data order
-  getOrders() {
+  static getOrders() {
     return Order.query()
       .with('products')
       .fetch()
@@ -55,6 +55,11 @@ class Order extends Model {
         id
       }
     }
+  }
+
+  // Deleted all order
+  deleteAllOrder() {
+    Order.truncate()
   }
 
   // Join with product

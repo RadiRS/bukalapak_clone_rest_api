@@ -20,6 +20,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('orders', 'OrderController.index')
   Route.get('order/:id', 'OrderController.show')
+  Route.delete('orders', 'OrderController.deleteAll')
   Route.delete('order/:id', 'OrderController.delete')
   Route.patch('order/:id', 'OrderController.update')
   Route.post('order', 'OrderController.store')
